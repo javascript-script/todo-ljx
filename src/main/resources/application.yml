@@ -1,0 +1,17 @@
+server:
+  port: 6789
+spring:
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/learn_java?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai
+    name: learn_java
+    username: root
+    password: password
+    hikari:
+      leak-detection-threshold: 15000
+      connection-test-query: SELECT 1
+      max-lifetime: 28700000
+  flyway:
+    enabled: true
+    out-of-order: true
+mybatis:
+  config-location: classpath:mybatis-config.xml

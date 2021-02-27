@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0/e/EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.todo.adapter.persistence.UserMapper">
+    <resultMap id="UserResultMap" type="User">
+        <id column="id" property="id"/>
+        <result column="username" property="username"/>
+        <result column="email" property="email"/>
+        <result column="age" property="age"/>
+    </resultMap>
+
+    <insert id="insert">
+        insert into user
+            (id, username, email, age)
+        values (#{user.id}, #{user.username}, #{user.email}, #{user.age});
+    </insert>
+
+    <update id="update">
+        update user
+        set username = #{user.username},
+            email    = #{user.email},
+            age      = #{user.age},
+            where id = #{user.id};
+    </update>
+
+    <delete id="delete">
+        delete
+        from user
+        where id = #{user.id};
+    </delete>
+
+    <select id="findById" resultMap="UserResultMap">
+        select id, username, email, age
+        from user
+        where id = #{id};
+    </select>
+</mapper>
