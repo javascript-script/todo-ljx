@@ -4,8 +4,6 @@ import com.example.todo.domain.User;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
-import java.util.Optional;
-
 @Mapper
 public interface UserMapper {
     void insert(@Param("user") User user);
@@ -14,6 +12,6 @@ public interface UserMapper {
 
     void delete(@Param("id") String id);
 
-    Optional<User> findById(@Param("id") String id);
+    User findById(@Param("id") String id);
 
 }

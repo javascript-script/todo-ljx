@@ -19,7 +19,7 @@
         set username = #{user.username},
             email    = #{user.email},
             age      = #{user.age},
-            where id = #{user.id};
+            where id = #{user.id}
     </update>
 
     <delete id="delete">

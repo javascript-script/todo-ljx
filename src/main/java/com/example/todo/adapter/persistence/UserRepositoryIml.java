@@ -5,8 +5,6 @@ import com.example.todo.domain.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Repository;
 
-import java.util.Optional;
-
 @Repository
 @AllArgsConstructor
 public class UserRepositoryIml implements UserRepository {
@@ -18,17 +16,17 @@ public class UserRepositoryIml implements UserRepository {
     }
 
     @Override
-    public Optional<User> findById(String id) {
-        return null;
+    public User findById(String id) {
+        return userMapper.findById(id);
     }
 
     @Override
-    public String delete(String id) {
-        return null;
+    public void delete(String id) {
+        userMapper.delete(id);
     }
 
     @Override
     public void update(User user) {
-
+        userMapper.update(user);
     }
 }
