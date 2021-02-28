@@ -1,9 +1,12 @@
 package com.example.todo.adapter.persistence;
 
+import com.example.todo.application.dto.UserDto;
 import com.example.todo.domain.User;
 import com.example.todo.domain.UserRepository;
+import com.github.pagehelper.Page;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Repository;
+
 
 @Repository
 @AllArgsConstructor
@@ -27,6 +30,11 @@ public class UserRepositoryIml implements UserRepository {
 
     @Override
     public void update(User user, String id) {
-        userMapper.update(user,id);
+        userMapper.update(user, id);
+    }
+
+    @Override
+    public Page<User> findAll(UserDto params) {
+        return userMapper.findAll(params);
     }
 }

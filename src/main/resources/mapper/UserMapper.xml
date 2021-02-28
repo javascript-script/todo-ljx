@@ -33,4 +33,20 @@
         from user
         where id = #{id};
     </select>
+
+    <select id="findAll" resultMap="UserResultMap">
+        select id ,username, email, age
+        from user
+        <where>
+            <if test="queryParams.username != null">
+                and username like concat('%', #{queryParams.username}, '%')
+            </if>
+            <if test="queryParams.email != null">
+                and email like concat('%', #{queryParams.email}, '%')
+            </if>
+            <if test="queryParams.age != null">
+                and age = #{queryParams.age}
+            </if>
+        </where>
+    </select>
 </mapper>
