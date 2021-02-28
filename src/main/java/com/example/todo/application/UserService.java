@@ -26,7 +26,7 @@ public class UserService {
         user.setUsername(userDto.getUsername());
         user.setAge(userDto.getAge());
         user.setEmail(userDto.getEmail());
-        userRepository.update(user);
+        userRepository.update(user, id);
         return user.getId();
     }
 

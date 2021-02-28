@@ -26,7 +26,7 @@ public class UserRepositoryIml implements UserRepository {
     }
 
     @Override
-    public void update(User user) {
-        userMapper.update(user);
+    public void update(User user, String id) {
+        userMapper.update(user,id);
     }
 }

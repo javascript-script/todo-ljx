@@ -16,16 +16,16 @@
 
     <update id="update">
         update user
-        set username = #{user.username},
-            email    = #{user.email},
-            age      = #{user.age},
-            where id = #{user.id}
+            set username = #{user.username},
+                email = #{user.email},
+                age = #{user.age}
+        where id = #{id}
     </update>
 
     <delete id="delete">
         delete
         from user
-        where id = #{user.id};
+        where id = #{id};
     </delete>
 
     <select id="findById" resultMap="UserResultMap">
