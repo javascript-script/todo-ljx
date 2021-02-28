@@ -9,7 +9,7 @@
     </settings>
 
     <typeAliases>
-        <typeAlias type="com.example.todo.domain.User" alias="User"/>
+        <typeAlias type="com.example.todo.domain.model.User" alias="User"/>
     </typeAliases>
 
 

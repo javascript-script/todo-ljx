@@ -2,8 +2,8 @@ package com.example.todo.adapter.rest;
 
 import com.example.todo.application.UserService;
 import com.example.todo.application.dto.UserDto;
-import com.example.todo.application.dto.UserListRequestDto;
-import com.example.todo.domain.User;
+import com.example.todo.application.dto.command.UserListQueryCommand;
+import com.example.todo.domain.model.User;
 import com.github.pagehelper.Page;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -57,7 +57,7 @@ public class UserController {
 
     @ApiOperation(value = "获取用户列表")
     @GetMapping("/list")
-    public Page<User> getUserList(UserListRequestDto requestParams) {
+    public Page<User> getUserList(UserListQueryCommand requestParams) {
         return userService.findAllUserList(requestParams);
     }
 

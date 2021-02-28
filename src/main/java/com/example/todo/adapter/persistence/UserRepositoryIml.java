@@ -1,8 +1,8 @@
 package com.example.todo.adapter.persistence;
 
 import com.example.todo.application.dto.UserDto;
-import com.example.todo.domain.User;
-import com.example.todo.domain.UserRepository;
+import com.example.todo.domain.model.User;
+import com.example.todo.domain.reponsitory.UserRepository;
 import com.github.pagehelper.Page;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Repository;

@@ -1,9 +1,9 @@
 package com.example.todo.application;
 
 import com.example.todo.application.dto.UserDto;
-import com.example.todo.application.dto.UserListRequestDto;
-import com.example.todo.domain.User;
-import com.example.todo.domain.UserRepository;
+import com.example.todo.application.dto.command.UserListQueryCommand;
+import com.example.todo.domain.model.User;
+import com.example.todo.domain.reponsitory.UserRepository;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import lombok.AllArgsConstructor;
@@ -38,7 +38,7 @@ public class UserService {
         userRepository.delete(id);
     }
 
-    public Page<User> findAllUserList(UserListRequestDto requestParams) {
+    public Page<User> findAllUserList(UserListQueryCommand requestParams) {
         UserDto params = UserDto.builder()
             .username(requestParams.getUsername())
             .email(requestParams.getEmail())

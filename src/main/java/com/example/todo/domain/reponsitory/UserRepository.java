@@ -1,7 +1,8 @@
-package com.example.todo.domain;
+package com.example.todo.domain.reponsitory;
 
 
 import com.example.todo.application.dto.UserDto;
+import com.example.todo.domain.model.User;
 import com.github.pagehelper.Page;
 
 
