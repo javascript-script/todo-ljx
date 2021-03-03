@@ -2,9 +2,9 @@ package com.example.todo.application;
 
 import com.example.todo.application.dto.UserDto;
 import com.example.todo.application.dto.command.UserListQueryCommand;
+import com.example.todo.common.ddd.application.dto.Page;
 import com.example.todo.domain.model.User;
 import com.example.todo.domain.reponsitory.UserRepository;
-import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -45,6 +45,6 @@ public class UserService {
             .age(requestParams.getAge())
             .build();
         PageHelper.startPage(requestParams.getPageNum(), requestParams.getPageSize(), true);
-        return userRepository.findAll(params);
+        return new Page<User>(userRepository.findAll(params), requestParams.getPageSize(), requestParams.getPageNum(), PageHelper.getLocalPage().getTotal());
     }
 }

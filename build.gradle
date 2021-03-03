@@ -19,9 +19,11 @@ repositories {
 }
 
 dependencies {
+    compile 'org.springframework.boot:spring-boot-starter-validation'
     compile 'com.github.pagehelper:pagehelper-spring-boot-starter:1.3.0'
     compile 'io.springfox:springfox-swagger2:2.9.2'
     compile 'io.springfox:springfox-swagger-ui:2.9.2'
+    compile 'javax.validation:validation-api:2.0.0.Final'
     implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.flywaydb:flyway-core'

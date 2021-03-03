@@ -2,9 +2,10 @@ package com.example.todo.adapter.persistence;
 
 import com.example.todo.application.dto.UserDto;
 import com.example.todo.domain.model.User;
-import com.github.pagehelper.Page;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 @Mapper
 public interface UserMapper {
@@ -16,6 +17,6 @@ public interface UserMapper {
 
     User findById(@Param("id") String id);
 
-    Page<User> findAll(@Param("queryParams") UserDto params);
+    List<User> findAll(@Param("queryParams") UserDto params);
 
 }

@@ -1,9 +1,9 @@
 package com.example.todo.domain.reponsitory;
 
-
 import com.example.todo.application.dto.UserDto;
 import com.example.todo.domain.model.User;
-import com.github.pagehelper.Page;
+
+import java.util.List;
 
 
 public interface UserRepository {
@@ -15,5 +15,5 @@ public interface UserRepository {
 
     void update(User user, String id);
 
-    Page<User> findAll(UserDto params);
+    List<User> findAll(UserDto params);
 }
