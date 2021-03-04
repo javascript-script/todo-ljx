@@ -6,9 +6,11 @@ import com.example.todo.common.ddd.application.dto.Page;
 import com.example.todo.domain.model.User;
 import com.example.todo.domain.reponsitory.UserRepository;
 import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 
 @Service
 @AllArgsConstructor
@@ -45,6 +47,9 @@ public class UserService {
             .age(requestParams.getAge())
             .build();
         PageHelper.startPage(requestParams.getPageNum(), requestParams.getPageSize(), true);
-        return new Page<User>(userRepository.findAll(params), requestParams.getPageSize(), requestParams.getPageNum(), PageHelper.getLocalPage().getTotal());
+
+        List<User> list = userRepository.findAll(params);
+        PageInfo<User> pageInfo =new PageInfo<User>(list);
+        return new Page<User>(list, requestParams.getPageSize(), requestParams.getPageNum(), pageInfo.getTotal());
     }
 }
