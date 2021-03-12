@@ -5,6 +5,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.converter.HttpMessageNotReadableException;
+
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.validation.BindException;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
@@ -16,7 +18,6 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
-
 import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
 import javax.validation.ValidationException;
@@ -105,6 +106,20 @@ public class GlobalExceptionHandler {
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("rspCode", 400);
         map.put("rspMsg", message);
+        return map;
+    }
+
+    /**
+     * 401 - UNAUTHORIZED
+     */
+
+    @ResponseStatus(HttpStatus.UNAUTHORIZED)
+    @ExceptionHandler(AccessDeniedException.class)
+    public Map<String, Object> handleAccessDeniedException(AccessDeniedException e) {
+        logger.error("权限验证失败", e);
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("rspCode", 401);
+        map.put("rspMsg", e.getMessage());
         return map;
     }
 

@@ -10,8 +10,8 @@
 
     <insert id="insert">
         insert into user
-            (id, username, email, age)
-        values (#{user.id}, #{user.username}, #{user.email}, #{user.age});
+            (id, username, email, age,password,role_Name)
+        values (#{user.id}, #{user.username}, #{user.email}, #{user.age}, #{user.password}, #{user.roleName});
     </insert>
 
     <update id="update">
@@ -32,6 +32,12 @@
         select id, username, email, age
         from user
         where id = #{id};
+    </select>
+
+    <select id="findByName" resultMap="UserResultMap">
+        select id, username, email, age, role_name, password
+        from user
+        where username = #{username};
     </select>
 
     <select id="findAll" resultMap="UserResultMap">

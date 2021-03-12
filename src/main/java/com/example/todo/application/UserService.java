@@ -1,24 +1,32 @@
 package com.example.todo.application;
 
+import com.example.todo.application.dto.UserCreateDto;
 import com.example.todo.application.dto.UserDto;
-import com.example.todo.application.dto.command.UserListQueryCommand;
+import com.example.todo.application.dto.UserListQueryDto;
 import com.example.todo.common.ddd.application.dto.Page;
 import com.example.todo.domain.model.User;
 import com.example.todo.domain.reponsitory.UserRepository;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+
 
 @Service
 @AllArgsConstructor
 public class UserService {
     private final UserRepository userRepository;
-
-    public String createUser(UserDto userDto) {
-        User user = new User(userDto.getUsername(), userDto.getEmail(), userDto.getAge());
+    public String createUser(UserCreateDto userDto) {
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        System.out.println( encoder.encode(userDto.getPassword()));
+        User user = new User(userDto.getUsername(),
+            userDto.getEmail(),
+            userDto.getAge(),
+            encoder.encode(userDto.getPassword()));
         userRepository.insert(user);
         return user.getId();
     }
@@ -40,7 +48,7 @@ public class UserService {
         userRepository.delete(id);
     }
 
-    public Page<User> findAllUserList(UserListQueryCommand requestParams) {
+    public Page<User> findAllUserList(UserListQueryDto requestParams) {
         UserDto params = UserDto.builder()
             .username(requestParams.getUsername())
             .email(requestParams.getEmail())
@@ -49,7 +57,7 @@ public class UserService {
         PageHelper.startPage(requestParams.getPageNum(), requestParams.getPageSize(), true);
 
         List<User> list = userRepository.findAll(params);
-        PageInfo<User> pageInfo =new PageInfo<User>(list);
+        PageInfo<User> pageInfo = new PageInfo<User>(list);
         return new Page<User>(list, requestParams.getPageSize(), requestParams.getPageNum(), pageInfo.getTotal());
     }
 }

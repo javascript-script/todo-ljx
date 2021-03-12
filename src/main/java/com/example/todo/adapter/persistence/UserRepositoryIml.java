@@ -38,4 +38,11 @@ public class UserRepositoryIml implements UserRepository {
     public List<User> findAll(UserDto params) {
         return userMapper.findAll(params);
     }
+
+    @Override
+    public User findByName(String username) {
+        return userMapper.findByName(username);
+    }
+
+    ;
 }

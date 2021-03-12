@@ -17,6 +17,8 @@ public interface UserMapper {
 
     User findById(@Param("id") String id);
 
+    User findByName(@Param("username") String username);
+
     List<User> findAll(@Param("queryParams") UserDto params);
 
 }

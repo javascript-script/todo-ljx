@@ -15,5 +15,7 @@ public interface UserRepository {
 
     void update(User user, String id);
 
+    User findByName(String username);
+
     List<User> findAll(UserDto params);
 }
